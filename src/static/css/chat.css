@@ -20,9 +20,13 @@
   color: var(--text-color);
 }
 
+html {
+  font-size: 100%;
+}
+
 .online-users {
   float: right;
-  padding: 5px;
+  padding: 0.5%;
   margin-top: 1%;
   margin-right: 0.5%;
   width: 10%;
@@ -59,7 +63,7 @@
 
 .chat {
   float: left;
-  padding: 5px;
+  padding: 0.5%;
   margin-top: 1%;
   margin-left: 0.5%;
   width: 85%;
@@ -114,14 +118,45 @@
 .message .time {
   color: var(--purple);
   float: left;
-  width: 10%;
+  width: 10vw;
 }
 
 .message .username {
+  color: var(--green);
   float: left;
-  width: 10%;
+  width: 10vw;
 }
 
 .message .text {
-  width: 80%;
+  width: 17vw;
+}
+
+.message-form {
+  width: 85%;
+}
+
+.form {
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+}
+
+.form:hover,
+.form:focus {
+  border-color: var(--pink-on-hover);
+  transition: 250ms;
+}
+
+.message-input {
+  width: 30%;
+}
+
+.send-button {
+  width: 15%;
+}
+
+.send-button:hover,
+.send-button:focus {
+  color: var(--pink-on-hover);
+  transition: 250ms;
 }

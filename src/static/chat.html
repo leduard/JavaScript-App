@@ -1,7 +1,14 @@
 <html>
   <head>
-    <title>A fucking chat</title>
+    <title>Just a chat :)</title>
     <link rel="stylesheet" type="text/css" href="./css/chat.css" />
+    <link rel="icon" href="./images/pepege.png" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
   </head>
   <body>
     <div class="online-users">
@@ -18,54 +25,15 @@
     <center>
       <div class="chat">
         <header>Chat messages</header>
-        <div class="messages-container">
-          <!--
-            <div class="message">
-              <div class="time">00:00</div>
-              <div class="username">user1</div>
-              <div class="text">message1</div>
-            </div>
-          -->
-        </div>
+        <div class="messages-container"></div>
         <form action="">
-          <input id="message-input" autocomplete="off" />
-          <button>Send</button>
+          <input class="message-input form" autocomplete="off" />
+          <button class="send-button form">Send</button>
         </form>
       </div>
     </center>
   </body>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script>
-    $(function() {
-      var socket = io();
-      $('form').submit(function(e) {
-        e.preventDefault();
-        let inputText = $('#message-input').val();
-
-        if (!!inputText) {
-          let data = {
-            date: new Date(),
-            username: 'user',
-            message: inputText,
-          };
-          socket.emit('newMessage', data);
-          $('#message-input').val('');
-          return false;
-        }
-      });
-      socket.on('newMessage', function(data) {
-        let { date } = data;
-        date = new Date(date);
-        $('.messages-container').append(
-          $(`
-          <div class="message">
-            <div class="time">${date.getHours()}:${date.getMinutes()}</div>
-            <div class="username">user1</div>
-            <div class="text">${data.message}</div>
-          </div>`)
-        );
-      });
-    });
-  </script>
+  <script src="js/messageHandler.js"></script>
 </html>
