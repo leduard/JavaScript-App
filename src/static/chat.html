@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>A fucking chat</title>
+    <link rel="stylesheet" type="text/css" href="./css/chat.css" />
+  </head>
+  <body>
+    <div class="online-users">
+      <header>Online users</header>
+      <div>
+        <h5>User1</h5>
+        <h5>User2</h5>
+        <h5>User3</h5>
+      </div>
+      <div>
+        <a href="#">What is that?</a>
+      </div>
+    </div>
+    <center>
+      <div class="chat">
+        <header>Chat messages</header>
+        <div class="messages-container">
+          <!--
+            <div class="message">
+              <div class="time">00:00</div>
+              <div class="username">user1</div>
+              <div class="text">message1</div>
+            </div>
+          -->
+        </div>
+        <form action="">
+          <input id="message-input" autocomplete="off" />
+          <button>Send</button>
+        </form>
+      </div>
+    </center>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(function() {
+      var socket = io();
+      $('form').submit(function(e) {
+        e.preventDefault();
+        let inputText = $('#message-input').val();
+
+        if (!!inputText) {
+          let data = {
+            date: new Date(),
+            username: 'user',
+            message: inputText,
+          };
+          socket.emit('newMessage', data);
+          $('#message-input').val('');
+          return false;
+        }
+      });
+      socket.on('newMessage', function(data) {
+        let { date } = data;
+        date = new Date(date);
+        $('.messages-container').append(
+          $(`
+          <div class="message">
+            <div class="time">${date.getHours()}:${date.getMinutes()}</div>
+            <div class="username">user1</div>
+            <div class="text">${data.message}</div>
+          </div>`)
+        );
+      });
+    });
+  </script>
+</html>
