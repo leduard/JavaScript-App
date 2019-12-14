@@ -8,7 +8,11 @@ routes.get('/', async (req, res) => {
 });
 
 routes.get('/chat', async (req, res) => {
-  res.sendFile(path.join(__dirname, 'static', 'chat.html'));
+  res.sendFile(path.join(__dirname, 'static', 'pages', 'chat.html'));
+});
+
+routes.get('/video', async (req, res) => {
+  res.sendFile(path.join(__dirname, 'static', 'pages', 'video.html'));
 });
 
 module.exports = routes;

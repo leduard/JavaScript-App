@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Shhhhh</title>
+    <link rel="stylesheet" type="text/css" href="../css/video.css" />
+    <link rel="icon" href="../images/trihard.png" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
+  </head>
+  <body>
+    <center>
+      <div class="video-container">
+        <video
+          src="../stuff/test_video.mp4"
+          id="video"
+          class="video"
+          onclick="playHandler()"
+          autoplay
+        ></video>
+      </div>
+      <div class="controls-container" data-state="hidden">
+        <div class="containers">
+          <button
+            id="playpause"
+            class="buttons"
+            type="button"
+            data-state="play"
+            onclick="playHandler()"
+          >
+            <i class="fas fa-pause" id="player-pause"></i>
+          </button>
+          <progress
+            id="progress"
+            class="progress-bar"
+            value="0"
+            min="0"
+            max="100"
+          >
+          </progress>
+        </div>
+        <div class="containers">
+          <i
+            class="fas fa-volume-up"
+            id="volume-icon"
+            onclick="volumeClickHandler()"
+          ></i>
+          <input
+            id="volume"
+            class="volume-control"
+            type="range"
+            min="0"
+            value="0.1"
+            max="1"
+            step="0.01"
+            onchange="changeVolumeHandler(value)"
+          />
+        </div>
+      </div>
+    </center>
+  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="../js/videoButtons.js"></script>
+</html>
