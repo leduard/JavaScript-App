@@ -2,16 +2,15 @@ let video = document.getElementById('video');
 let progess = document.getElementById('progress');
 let volume = document.getElementById('volume');
 
-progess.max = video.duration;
-video.volume = 0.1;
+setTimeout(() => {
+  progess.max = video.duration;
+  volume.value = 0.01;
+  video.volume = 0.01;
+}, 100);
 
 video.addEventListener('timeupdate', function() {
   progess.value = this.currentTime;
 });
-
-function setInitialVolume(value) {
-  video.volume = value;
-}
 
 function playHandler() {
   let icon = document.getElementById('player-pause');
@@ -20,17 +19,20 @@ function playHandler() {
     icon.classList.remove('fa-play');
     icon.classList.add('fa-pause');
 
+    commander.emit('videoPlayed', video.currentTime);
     video.play();
   } else {
     icon.classList.remove('fa-pause');
     icon.classList.add('fa-play');
 
+    commander.emit('videoPaused', video.currentTime);
     video.pause();
   }
 }
 
 function changeVolumeHandler(value) {
   let icon = document.getElementById('volume-icon');
+  video.muted = false;
 
   if (value == 0) {
     icon.classList.remove('fa-volume-up');

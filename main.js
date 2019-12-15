@@ -15,10 +15,31 @@ server.listen(PORT, () => {
   console.log(`Open at *:${PORT}`);
 });
 
-io.on('connection', async client => {
-  console.log('connected');
-  client.on('newMessage', function(data) {
+let currentTime = 0;
+
+io.on('connection', async socket => {
+  socket.on('newMessage', function(data) {
     console.log(data);
     io.emit('newMessage', data);
+  });
+
+  socket.on('newViewer', async data => {
+    socket.emit('newViewer', currentTime);
+  });
+});
+
+io.of('/commander').on('connection', async socket => {
+  console.log('commander connected');
+
+  socket.on('videoTimeUpdate', async data => {
+    currentTime = data.currentTime;
+  });
+
+  socket.on('videoPlayed', async data => {
+    io.emit('videoPlayed', data);
+  });
+
+  socket.on('videoPaused', async data => {
+    io.emit('videoPaused', data);
   });
 });

@@ -23,21 +23,12 @@
           src="../stuff/test_video.mp4"
           id="video"
           class="video"
-          onclick="playHandler()"
           autoplay
+          muted
         ></video>
       </div>
       <div class="controls-container" data-state="hidden">
         <div class="containers">
-          <button
-            id="playpause"
-            class="buttons"
-            type="button"
-            data-state="play"
-            onclick="playHandler()"
-          >
-            <i class="fas fa-pause" id="player-pause"></i>
-          </button>
           <progress
             id="progress"
             class="progress-bar"
@@ -68,6 +59,6 @@
     </center>
   </body>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="../js/videoButtons.js"></script>
+  <script src="../js/streaming.js"></script>
 </html>

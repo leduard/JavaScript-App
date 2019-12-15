@@ -1,0 +1,15 @@
+# Idea
+
+All clients pre-load video ready to roll
+
+All clients open socket to server and indicate they are ready to rumble
+
+Server runs some quick test messages to measure latency.
+
+Server sends the "go" message to all clients, possibly delaying to account for latency (or indicate the time for the client to pause instead; either way works)
+
+If a client stops, it send message to server; server immediately send message to another clients to stop.
+
+Clients reply with where they are paused
+
+When restarting, adjust the start messages to account for both latency and the fact some clients are paused fractionally later.
