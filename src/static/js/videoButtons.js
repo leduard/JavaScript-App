@@ -6,7 +6,7 @@ setTimeout(() => {
   progess.max = video.duration;
   volume.value = 0.01;
   video.volume = 0.01;
-}, 100);
+}, 500);
 
 video.addEventListener('timeupdate', function() {
   progess.value = this.currentTime;

@@ -16,6 +16,7 @@ server.listen(PORT, () => {
 });
 
 let currentTime = 0;
+let isPlaying = true;
 
 io.on('connection', async socket => {
   socket.on('newMessage', function(data) {
@@ -24,7 +25,7 @@ io.on('connection', async socket => {
   });
 
   socket.on('newViewer', async data => {
-    socket.emit('newViewer', currentTime);
+    socket.emit('newViewer', { currentTime, isPlaying });
   });
 });
 
@@ -36,10 +37,12 @@ io.of('/commander').on('connection', async socket => {
   });
 
   socket.on('videoPlayed', async data => {
+    isPlaying = true;
     io.emit('videoPlayed', data);
   });
 
   socket.on('videoPaused', async data => {
+    isPlaying = false;
     io.emit('videoPaused', data);
   });
 });
